@@ -14,7 +14,8 @@ interface CollectionCard {
   name: string;
   category: string;
   cards: [{}];
-  handleCollectionSelection: (val: string) => void;
+  handleCollectionSelection: (val: string, type: string) => void;
+  handleAddCards: (val: string) => void;
 }
 
 export default function CollectionCard({
@@ -22,6 +23,7 @@ export default function CollectionCard({
   category,
   cards,
   handleCollectionSelection,
+  handleAddCards,
 }: CollectionCard) {
   return (
     <motion.div
@@ -48,7 +50,7 @@ export default function CollectionCard({
         </Box>
       </Flex>
       <Button
-        onClick={() => handleCollectionSelection(name)}
+        onClick={() => handleCollectionSelection(name, "review")}
         size="sm"
         colorScheme={"blue"}
         mb={5}
@@ -57,8 +59,19 @@ export default function CollectionCard({
       </Button>
       <Divider />
       <HStack>
-        <Button size="sm">Add</Button>
-        <Button size="sm">Edit</Button>
+        {/* Add button opens the add modal  */}
+        <Button
+          onClick={() => handleCollectionSelection(name, "add")}
+          size="sm"
+        >
+          Add
+        </Button>
+        <Button
+          size="sm"
+          onClick={() => handleCollectionSelection(name, "edit")}
+        >
+          Edit
+        </Button>
         {/* Edit shows all cards which we can then edit or delete */}
         <Button size="sm">Delete</Button>
       </HStack>

@@ -3,11 +3,9 @@ import "./App.css";
 import dayjs from "dayjs";
 import { supermemo, SuperMemoItem, SuperMemoGrade } from "supermemo";
 //Components
-import Card from "./components/ReviewCards";
 import NavButtons from "./components/NavButtons";
 import ReviewCollections from "./components/Collections/ReviewCollections";
 import CreateCollection from "./components/Collections/CreateCollection";
-import CreateCard from "./components/CreateCard";
 import SectionTitles from "./components/SectionTitles";
 import { Button, Box, Flex, Divider } from "@chakra-ui/react";
 

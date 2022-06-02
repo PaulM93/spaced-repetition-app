@@ -36,6 +36,7 @@ export default function CreateCollection({
     3) We can edit, delete etc with the collection id
 ]*/
 
+  //Option to edit collection too -- and delete it
   const [collectionDetails, setCollectionDetails] = useState<Collection>({
     cards: [{}],
     name: "",

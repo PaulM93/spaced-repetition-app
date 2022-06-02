@@ -39,6 +39,7 @@ export default function ReviewCards({
   reviewedCards,
   setReviewedCards,
   handleReviewCompleted,
+  handleClose,
 }) {
   const [view, setView] = useState(false);
   //If the card has the due date of today we review it
@@ -126,7 +127,12 @@ export default function ReviewCards({
 
   return cards.length ? (
     <Flex flexDir={"column"} align="center" w={"100%"} p={10} borderRadius={4}>
-      <Text mb={5}>Remaining Cards: {cards.length}</Text>
+      <Flex align="center" mb={5}>
+        <Text mr={4}>Remaining Cards: {cards.length}</Text>
+        <Button size="xs" onClick={() => handleClose()}>
+          Close
+        </Button>
+      </Flex>
       {view ? (
         <Heading size="lg" mb={10}>
           {cards[cardVal].front}

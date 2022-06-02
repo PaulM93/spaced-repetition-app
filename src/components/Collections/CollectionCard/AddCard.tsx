@@ -3,12 +3,12 @@ import { Flex, Heading, Input, VStack, Button } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import { v4 as uuidv4 } from "uuid";
 
-interface CreateCard {
-  setCards: any;
-  cards: any;
-}
+// interface CreateCard {
+//   setCards: any;
+//   cards: any;
+// }
 
-export default function CreateCard({ setCards, cards }: CreateCard) {
+export default function AddCard({ handleAddCards, handleClose }) {
   const [cardDetails, setCardDetails] = useState({
     front: "",
     back: "",
@@ -34,8 +34,12 @@ export default function CreateCard({ setCards, cards }: CreateCard) {
       back: "",
       id: "",
     });
-    setCards([...cards, cardDetails]);
+    handleAddCards(cardDetails);
+    // setCards([...cards, cardDetails]);
   };
+
+  //Create a new cards array here
+  //Once we press close or save it merges with the old cards
 
   return (
     <Flex
@@ -46,9 +50,14 @@ export default function CreateCard({ setCards, cards }: CreateCard) {
       boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
       borderRadius={4}
     >
-      <Heading mb={5} size="md">
-        Create Card
-      </Heading>
+      <Flex align="center" mb={5}>
+        <Heading size="md" mr={2}>
+          Create Card
+        </Heading>
+        <Button size="xs" onClick={() => handleClose()}>
+          Close
+        </Button>
+      </Flex>
       <VStack spacing={3}>
         <Input
           value={cardDetails.front}
@@ -64,7 +73,12 @@ export default function CreateCard({ setCards, cards }: CreateCard) {
           placeholder="Back of card..."
           size="md"
         />
-        <Button onClick={() => handleSubmit()}>Add Card</Button>
+        <Button
+          disabled={cardDetails.front === "" || cardDetails.back === ""}
+          onClick={() => handleSubmit()}
+        >
+          Add Card
+        </Button>
       </VStack>
     </Flex>
   );
